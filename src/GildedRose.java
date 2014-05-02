@@ -15,10 +15,9 @@ public class GildedRose {
         if (item.name.equals("Sulfuras, Hand of Ragnaros"))
             return;
 
-        if (isPerishable(item)) {
-            decrementQuality(item);
-        } else {
-
+        if (item.name.equals("Aged Brie")) {
+            incrementQuality(item);
+        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             incrementQuality(item);
 
             if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
@@ -29,7 +28,13 @@ public class GildedRose {
                 if (item.sellIn < 6) {
                     incrementQuality(item);
                 }
+
+                if (item.sellIn < 0) {
+                    item.quality = 0;
+                }
             }
+        } else {
+            decrementQuality(item);
         }
 
         item.sellIn = item.sellIn - 1;
