@@ -31,7 +31,7 @@ public class DegradableItem {
             }
 
             if (outOfDate()) {
-                item.quality = 0;
+                qualityVanish();
             }
         } else {
             decrementQuality();
@@ -39,6 +39,10 @@ public class DegradableItem {
                 decrementQuality();
             }
         }
+    }
+
+    private void qualityVanish() {
+        item.quality = 0;
     }
 
     private int sellIn() {
