@@ -13,7 +13,7 @@ public class DegradableItem {
     }
 
     private void age() {
-        item.sellIn = item.sellIn - 1;
+        item.sellIn = sellIn() - 1;
     }
 
     protected void updateQuality() {
@@ -22,11 +22,11 @@ public class DegradableItem {
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             incrementQuality();
 
-            if (item.sellIn < 10) {
+            if (sellIn() < 10) {
                 incrementQuality();
             }
 
-            if (item.sellIn < 5) {
+            if (sellIn() < 5) {
                 incrementQuality();
             }
 
@@ -41,8 +41,12 @@ public class DegradableItem {
         }
     }
 
+    private int sellIn() {
+        return item.sellIn;
+    }
+
     protected boolean outOfDate() {
-        return item.sellIn < 0;
+        return sellIn() < 0;
     }
 
     protected void incrementQuality() {
