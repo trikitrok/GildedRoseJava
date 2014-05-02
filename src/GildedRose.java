@@ -17,27 +17,8 @@ public class GildedRose {
         for (Item item : items) {
             if (item.name.equals("Sulfuras, Hand of Ragnaros"))
                 continue;
-            degradableItems.add(createDegradable(item));
+            degradableItems.add(DegradableItem.createFrom(item));
         }
         return new DegradableItems(degradableItems);
-    }
-
-    private DegradableItem createDegradable(Item item) {
-
-        if (item.name.contains("Conjured")) {
-            return new ConjuredItem(createRegular(item));
-        }
-
-        return createRegular(item);
-    }
-
-    private DegradableItem createRegular(Item item) {
-        if (item.name.equals("Aged Brie")) {
-            return new AgedBrie(item);
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            return new ConcertBackstagePasses(item);
-        } else {
-            return new PerishableItem(item);
-        }
     }
 }

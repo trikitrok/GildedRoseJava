@@ -1,18 +1,14 @@
 public abstract class DegradableItem {
 
-    private Item item;
-
-    public DegradableItem(Item item) {
-        this.item = item;
-    }
-
-    public DegradableItem(DegradableItem degradableItem) {
-        this.item = degradableItem.item;
+    static public DegradableItem createFrom(Item item) {
+        if (item.name.contains("Conjured")) {
+            return new ConjuredItem(createRegular(item));
+        }
+        return createRegular(item);
     }
 
     public void degrade() {
         age();
-
         updateQuality();
     }
 
@@ -21,6 +17,26 @@ public abstract class DegradableItem {
     }
 
     abstract protected void updateQuality();
+
+    private Item item;
+
+    protected DegradableItem(Item item) {
+        this.item = item;
+    }
+
+    protected DegradableItem(DegradableItem degradableItem) {
+        this.item = degradableItem.item;
+    }
+
+    static private DegradableItem createRegular(Item item) {
+        if (item.name.equals("Aged Brie")) {
+            return new AgedBrie(item);
+        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            return new ConcertBackstagePasses(item);
+        } else {
+            return new PerishableItem(item);
+        }
+    }
 
     protected void qualityVanish() {
         item.quality = 0;

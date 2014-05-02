@@ -12,5 +12,4 @@ public class ConjuredItem extends DegradableItem {
         degradableItem.updateQuality();
         degradableItem.updateQuality();
     }
-
 }
