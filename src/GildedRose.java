@@ -26,18 +26,16 @@ public class GildedRose {
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             incrementQuality(item);
 
-            if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (item.sellIn < 10) {
-                    incrementQuality(item);
-                }
+            if (item.sellIn < 10) {
+                incrementQuality(item);
+            }
 
-                if (item.sellIn < 5) {
-                    incrementQuality(item);
-                }
+            if (item.sellIn < 5) {
+                incrementQuality(item);
+            }
 
-                if (item.sellIn < 0) {
-                    item.quality = 0;
-                }
+            if (item.sellIn < 0) {
+                item.quality = 0;
             }
         } else {
             decrementQuality(item);
