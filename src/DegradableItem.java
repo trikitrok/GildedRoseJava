@@ -7,9 +7,6 @@ public class DegradableItem {
     }
 
     public void degrade() {
-        if (item.name.equals("Sulfuras, Hand of Ragnaros"))
-            return;
-
         age();
 
         updateQuality();
