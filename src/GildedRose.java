@@ -15,9 +15,13 @@ public class GildedRose {
         if (item.name.equals("Sulfuras, Hand of Ragnaros"))
             return;
 
-        item.sellIn = item.sellIn - 1;
+        age(item);
 
         updateQuality(item);
+    }
+
+    private void age(Item item) {
+        item.sellIn = item.sellIn - 1;
     }
 
     private void updateQuality(Item item) {
