@@ -15,17 +15,23 @@ public class GildedRose {
         if (item.name.equals("Sulfuras, Hand of Ragnaros"))
             return;
 
+        item.sellIn = item.sellIn - 1;
+
         if (item.name.equals("Aged Brie")) {
             incrementQuality(item);
+
+            if (item.sellIn < 0) {
+                incrementQuality(item);
+            }
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             incrementQuality(item);
 
             if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (item.sellIn < 11) {
+                if (item.sellIn < 10) {
                     incrementQuality(item);
                 }
 
-                if (item.sellIn < 6) {
+                if (item.sellIn < 5) {
                     incrementQuality(item);
                 }
 
@@ -35,16 +41,7 @@ public class GildedRose {
             }
         } else {
             decrementQuality(item);
-        }
-
-        item.sellIn = item.sellIn - 1;
-
-        if (item.sellIn < 0) {
-            if (item.name.equals("Aged Brie")) {
-                incrementQuality(item);
-            } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                item.quality = 0;
-            } else {
+            if (item.sellIn < 0) {
                 decrementQuality(item);
             }
         }
@@ -54,11 +51,6 @@ public class GildedRose {
         if (item.quality < 50) {
             item.quality = item.quality + 1;
         }
-    }
-
-    private boolean isPerishable(Item item) {
-        return !item.name.equals("Aged Brie")
-                && !item.name.equals("Backstage passes to a TAFKAL80ETC concert");
     }
 
     private void decrementQuality(Item item) {
