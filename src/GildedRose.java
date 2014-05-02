@@ -23,7 +23,7 @@ public class GildedRose {
             } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 degradableItems.add(new ConcertBackstagePasses(item));
             } else {
-                degradableItems.add(new DegradableItem(item));
+                degradableItems.add(new PerishableItem(item));
             }
         }
         return new DegradableItems(degradableItems);

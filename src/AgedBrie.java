@@ -12,5 +12,4 @@ public class AgedBrie extends DegradableItem {
             incrementQuality();
         }
     }
-
 }

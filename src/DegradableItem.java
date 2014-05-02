@@ -1,4 +1,4 @@
-public class DegradableItem {
+public abstract class DegradableItem {
 
     private Item item;
 
@@ -16,12 +16,7 @@ public class DegradableItem {
         item.sellIn = sellIn() - 1;
     }
 
-    protected void updateQuality() {
-        decrementQuality();
-        if (outOfDate()) {
-            decrementQuality();
-        }
-    }
+    abstract protected void updateQuality();
 
     protected void qualityVanish() {
         item.quality = 0;
@@ -41,7 +36,7 @@ public class DegradableItem {
         }
     }
 
-    private void decrementQuality() {
+    protected void decrementQuality() {
         if (item.quality > 0) {
             item.quality = item.quality - 1;
         }
