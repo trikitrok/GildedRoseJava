@@ -181,4 +181,14 @@ public class GildedRoseTest {
         assertItemsQuality(18, conjuredSulfuras);
         assertEquals(5, conjuredSulfuras.sellIn);
     }
+
+    @Test
+    public void conjuredAgedBrieQualityIncreasesByTwoEachDayBeforeSellDate() {
+        Item agedBrie = new Item("Conjured Aged Brie", 2, 0);
+        gildedRose = aGildedRoseWithItems(agedBrie);
+
+        afterDays(2);
+
+        assertItemsQuality(4, agedBrie);
+    }
 }
