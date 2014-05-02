@@ -8,11 +8,11 @@ public class ConcertBackstagePasses extends DegradableItem {
     public void updateQuality() {
         incrementQuality();
 
-        if (lessThanTenDaysToConcert()) {
+        if (concertDayIsClose()) {
             incrementQuality();
         }
 
-        if (lessThanFiveDaysToConcert()) {
+        if (concertDayIsEvenCloser()) {
             incrementQuality();
         }
 
@@ -21,11 +21,11 @@ public class ConcertBackstagePasses extends DegradableItem {
         }
     }
 
-    private boolean lessThanFiveDaysToConcert() {
+    private boolean concertDayIsEvenCloser() {
         return sellIn() < 5;
     }
 
-    private boolean lessThanTenDaysToConcert() {
+    private boolean concertDayIsClose() {
         return sellIn() < 10;
     }
 }
