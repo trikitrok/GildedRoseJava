@@ -17,15 +17,18 @@ public class GildedRose {
         for (Item item : items) {
             if (item.name.equals("Sulfuras, Hand of Ragnaros"))
                 continue;
-
-            if (item.name.equals("Aged Brie")) {
-                degradableItems.add(new AgedBrie(item));
-            } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                degradableItems.add(new ConcertBackstagePasses(item));
-            } else {
-                degradableItems.add(new PerishableItem(item));
-            }
+            degradableItems.add(createDegradable(item));
         }
         return new DegradableItems(degradableItems);
+    }
+
+    private DegradableItem createDegradable(Item item) {
+        if (item.name.equals("Aged Brie")) {
+            return new AgedBrie(item);
+        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            return new ConcertBackstagePasses(item);
+        } else {
+            return new PerishableItem(item);
+        }
     }
 }
