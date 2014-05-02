@@ -17,6 +17,10 @@ public class GildedRose {
 
         item.sellIn = item.sellIn - 1;
 
+        updateQuality(item);
+    }
+
+    private void updateQuality(Item item) {
         if (item.name.equals("Aged Brie")) {
             incrementQuality(item);
 
