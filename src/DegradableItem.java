@@ -1,7 +1,7 @@
 public abstract class DegradableItem {
 
     static public DegradableItem createFrom(Item item) {
-        if (item.name.contains("Conjured")) {
+        if (aConjured(item)) {
             return new ConjuredItem(createRegular(item));
         }
         return createRegular(item);
@@ -29,9 +29,9 @@ public abstract class DegradableItem {
     }
 
     static private DegradableItem createRegular(Item item) {
-        if (item.name.contains("Aged Brie")) {
+        if (anAgedBrie(item)) {
             return new AgedBrie(item);
-        } else if (item.name.contains("Backstage passes to a TAFKAL80ETC concert")) {
+        } else if (aConcertBackstagePasses(item)) {
             return new ConcertBackstagePasses(item);
         } else {
             return new PerishableItem(item);
@@ -51,14 +51,29 @@ public abstract class DegradableItem {
     }
 
     protected void incrementQuality() {
-        if (item.quality < 50) {
+        if (item.quality < MAXIMUM_QUALITY) {
             item.quality = item.quality + 1;
         }
     }
 
     protected void decrementQuality() {
-        if (item.quality > 0) {
+        if (item.quality > MINIMUM_QUALITY) {
             item.quality = item.quality - 1;
         }
     }
+
+    private static boolean aConjured(Item item) {
+        return item.name.contains("Conjured");
+    }
+
+    private static boolean aConcertBackstagePasses(Item item) {
+        return item.name.contains("Backstage passes to a TAFKAL80ETC concert");
+    }
+
+    private static boolean anAgedBrie(Item item) {
+        return item.name.contains("Aged Brie");
+    }
+
+    private static final int MINIMUM_QUALITY = 0;
+    private static final int MAXIMUM_QUALITY = 50;
 }
