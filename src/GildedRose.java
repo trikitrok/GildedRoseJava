@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class GildedRose {
     Item[] items;
 
@@ -6,15 +9,21 @@ public class GildedRose {
     }
 
     public void updateQuality() {
-        for (Item item : items) {
-            degrade(item);
+
+        List<DegradableItem> degradableItems = selectDegradable();
+
+        for (DegradableItem item : degradableItems) {
+            item.degrade();
         }
     }
 
-    private void degrade(Item item) {
-        if (item.name.equals("Sulfuras, Hand of Ragnaros"))
-            return;
-
-        new DegradableItem(item).degrade();
+    private List<DegradableItem> selectDegradable() {
+        List<DegradableItem> degradableItems = new ArrayList<DegradableItem>();
+        for (Item item : items) {
+            if (item.name.equals("Sulfuras, Hand of Ragnaros"))
+                continue;
+            degradableItems.add(new DegradableItem(item));
+        }
+        return degradableItems;
     }
 }
