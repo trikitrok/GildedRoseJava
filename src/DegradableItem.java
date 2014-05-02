@@ -20,19 +20,7 @@ public class DegradableItem {
         if (item.name.equals("Aged Brie")) {
             throw new RuntimeException("AgedBrie");
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            incrementQuality();
-
-            if (sellIn() < 10) {
-                incrementQuality();
-            }
-
-            if (sellIn() < 5) {
-                incrementQuality();
-            }
-
-            if (outOfDate()) {
-                qualityVanish();
-            }
+            throw new RuntimeException("Backstage passes to a TAFKAL80ETC concert");
         } else {
             decrementQuality();
             if (outOfDate()) {
@@ -41,11 +29,11 @@ public class DegradableItem {
         }
     }
 
-    private void qualityVanish() {
+    protected void qualityVanish() {
         item.quality = 0;
     }
 
-    private int sellIn() {
+    protected int sellIn() {
         return item.sellIn;
     }
 

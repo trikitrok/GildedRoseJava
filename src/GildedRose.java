@@ -20,6 +20,8 @@ public class GildedRose {
 
             if (item.name.equals("Aged Brie")) {
                 degradableItems.add(new AgedBrie(item));
+            } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                degradableItems.add(new ConcertBackstagePasses(item));
             } else {
                 degradableItems.add(new DegradableItem(item));
             }
