@@ -149,4 +149,24 @@ public class GildedRoseTest {
 
         assertItemsQuality(0, conjuredItem);
     }
+
+    @Test
+    public void conjuredItemsQualityDecreasesByFourEachDayAfterSellDate() {
+        Item conjuredItem = new Item("Conjured Mana Cake", 5, 18);
+        gildedRose = aGildedRoseWithItems(conjuredItem);
+
+        makeDaysPass(7);
+
+        assertItemsQuality(0, conjuredItem);
+    }
+
+    @Test
+    public void conjuredItemsQualityCannotBeLessThanZero() {
+        Item conjuredItem = new Item("Conjured Mana Cake", 5, 18);
+        gildedRose = aGildedRoseWithItems(conjuredItem);
+
+        makeDaysPass(200);
+
+        assertItemsQuality(0, conjuredItem);
+    }
 }
