@@ -139,4 +139,14 @@ public class GildedRoseTest {
 
         assertItemsQuality(0, perishableItem);
     }
+
+    @Test
+    public void conjuredItemsQualityDecreasesByTwoEachDayBeforeSellDate() {
+        Item conjuredItem = new Item("Conjured Mana Cake", 3, 6);
+        gildedRose = aGildedRoseWithItems(conjuredItem);
+
+        makeDaysPass(3);
+
+        assertItemsQuality(0, conjuredItem);
+    }
 }

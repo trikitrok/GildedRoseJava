@@ -6,6 +6,10 @@ public abstract class DegradableItem {
         this.item = item;
     }
 
+    public DegradableItem(DegradableItem degradableItem) {
+        this.item = degradableItem.item;
+    }
+
     public void degrade() {
         age();
 

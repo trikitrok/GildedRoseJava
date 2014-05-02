@@ -23,6 +23,15 @@ public class GildedRose {
     }
 
     private DegradableItem createDegradable(Item item) {
+
+        if (item.name.contains("Conjured")) {
+            return new ConjuredItem(createRegular(item));
+        }
+
+        return createRegular(item);
+    }
+
+    private DegradableItem createRegular(Item item) {
         if (item.name.equals("Aged Brie")) {
             return new AgedBrie(item);
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
