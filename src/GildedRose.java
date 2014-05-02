@@ -18,7 +18,11 @@ public class GildedRose {
             if (item.name.equals("Sulfuras, Hand of Ragnaros"))
                 continue;
 
-            degradableItems.add(new DegradableItem(item));
+            if (item.name.equals("Aged Brie")) {
+                degradableItems.add(new AgedBrie(item));
+            } else {
+                degradableItems.add(new DegradableItem(item));
+            }
         }
         return new DegradableItems(degradableItems);
     }
