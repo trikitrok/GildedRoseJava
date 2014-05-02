@@ -21,16 +21,13 @@ public class GildedRose {
 
             incrementQuality(item);
 
-            if (item.quality < 50) {
+            if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                if (item.sellIn < 11) {
+                    incrementQuality(item);
+                }
 
-                if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    if (item.sellIn < 11) {
-                        incrementQuality(item);
-                    }
-
-                    if (item.sellIn < 6) {
-                        incrementQuality(item);
-                    }
+                if (item.sellIn < 6) {
+                    incrementQuality(item);
                 }
             }
         }
