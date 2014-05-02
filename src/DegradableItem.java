@@ -20,7 +20,7 @@ public class DegradableItem {
         if (item.name.equals("Aged Brie")) {
             incrementQuality();
 
-            if (item.sellIn < 0) {
+            if (outOfDate()) {
                 incrementQuality();
             }
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
@@ -34,15 +34,19 @@ public class DegradableItem {
                 incrementQuality();
             }
 
-            if (item.sellIn < 0) {
+            if (outOfDate()) {
                 item.quality = 0;
             }
         } else {
             decrementQuality();
-            if (item.sellIn < 0) {
+            if (outOfDate()) {
                 decrementQuality();
             }
         }
+    }
+
+    private boolean outOfDate() {
+        return item.sellIn < 0;
     }
 
     private void incrementQuality() {
