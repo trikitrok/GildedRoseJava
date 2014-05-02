@@ -6,7 +6,7 @@ public class GildedRoseTest {
 
     private GildedRose gildedRose;
 
-    private void makeDaysPass(int numberOfDays) {
+    private void afterDays(int numberOfDays) {
         for (int i = 0; i < numberOfDays; ++i) {
             gildedRose.updateQuality();
         }
@@ -21,13 +21,24 @@ public class GildedRoseTest {
     }
 
     @Test
+    public void sulfurasIsInmutable() {
+        Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
+        gildedRose = aGildedRoseWithItems(sulfuras);
+
+        afterDays(10);
+
+        assertItemsQuality(80, sulfuras);
+        assertEquals(0, sulfuras.sellIn);
+    }
+
+    @Test
     public void sellInDecreasesByOneEachDay() {
-        Item whatever = new Item("whatever", 2, 0);
-        gildedRose = aGildedRoseWithItems(whatever);
+        Item notSulfuras = new Item("notSulfuras", 2, 0);
+        gildedRose = aGildedRoseWithItems(notSulfuras);
 
-        makeDaysPass(10);
+        afterDays(10);
 
-        assertEquals(-8, whatever.sellIn);
+        assertEquals(-8, notSulfuras.sellIn);
     }
 
     @Test
@@ -35,7 +46,7 @@ public class GildedRoseTest {
         Item agedBrie = new Item("Aged Brie", 2, 0);
         gildedRose = aGildedRoseWithItems(agedBrie);
 
-        makeDaysPass(2);
+        afterDays(2);
 
         assertItemsQuality(2, agedBrie);
     }
@@ -45,7 +56,7 @@ public class GildedRoseTest {
         Item agedBrie = new Item("Aged Brie", 0, 0);
         gildedRose = aGildedRoseWithItems(agedBrie);
 
-        makeDaysPass(2);
+        afterDays(2);
 
         assertItemsQuality(4, agedBrie);
     }
@@ -55,19 +66,9 @@ public class GildedRoseTest {
         Item agedBrie = new Item("Aged Brie", 2, 0);
         gildedRose = aGildedRoseWithItems(agedBrie);
 
-        makeDaysPass(300);
+        afterDays(300);
 
         assertItemsQuality(50, agedBrie);
-    }
-
-    @Test
-    public void sulfurasIsInmutable() {
-        Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
-        gildedRose = aGildedRoseWithItems(sulfuras);
-
-        makeDaysPass(10);
-
-        assertItemsQuality(80, sulfuras);
     }
 
     @Test
@@ -75,7 +76,7 @@ public class GildedRoseTest {
         Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20);
         gildedRose = aGildedRoseWithItems(backstagePasses);
 
-        makeDaysPass(5);
+        afterDays(5);
 
         assertItemsQuality(25, backstagePasses);
     }
@@ -85,7 +86,7 @@ public class GildedRoseTest {
         Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20);
         gildedRose = aGildedRoseWithItems(backstagePasses);
 
-        makeDaysPass(10);
+        afterDays(10);
 
         assertItemsQuality(35, backstagePasses);
     }
@@ -95,7 +96,7 @@ public class GildedRoseTest {
         Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20);
         gildedRose = aGildedRoseWithItems(backstagePasses);
 
-        makeDaysPass(15);
+        afterDays(15);
 
         assertItemsQuality(50, backstagePasses);
     }
@@ -105,7 +106,7 @@ public class GildedRoseTest {
         Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20);
         gildedRose = aGildedRoseWithItems(backstagePasses);
 
-        makeDaysPass(16);
+        afterDays(16);
 
         assertItemsQuality(0, backstagePasses);
     }
@@ -115,7 +116,7 @@ public class GildedRoseTest {
         Item regularItem = new Item("+5 Dexterity Vest", 10, 20);
         gildedRose = aGildedRoseWithItems(regularItem);
 
-        makeDaysPass(10);
+        afterDays(10);
 
         assertItemsQuality(10, regularItem);
     }
@@ -125,7 +126,7 @@ public class GildedRoseTest {
         Item perishableItem = new Item("+5 Dexterity Vest", 10, 20);
         gildedRose = aGildedRoseWithItems(perishableItem);
 
-        makeDaysPass(15);
+        afterDays(15);
 
         assertItemsQuality(0, perishableItem);
     }
@@ -135,7 +136,7 @@ public class GildedRoseTest {
         Item perishableItem = new Item("+5 Dexterity Vest", 10, 20);
         gildedRose = aGildedRoseWithItems(perishableItem);
 
-        makeDaysPass(200);
+        afterDays(200);
 
         assertItemsQuality(0, perishableItem);
     }
@@ -145,7 +146,7 @@ public class GildedRoseTest {
         Item conjuredItem = new Item("Conjured Mana Cake", 3, 6);
         gildedRose = aGildedRoseWithItems(conjuredItem);
 
-        makeDaysPass(3);
+        afterDays(3);
 
         assertItemsQuality(0, conjuredItem);
     }
@@ -155,7 +156,7 @@ public class GildedRoseTest {
         Item conjuredItem = new Item("Conjured Mana Cake", 5, 18);
         gildedRose = aGildedRoseWithItems(conjuredItem);
 
-        makeDaysPass(7);
+        afterDays(7);
 
         assertItemsQuality(0, conjuredItem);
     }
@@ -165,8 +166,19 @@ public class GildedRoseTest {
         Item conjuredItem = new Item("Conjured Mana Cake", 5, 18);
         gildedRose = aGildedRoseWithItems(conjuredItem);
 
-        makeDaysPass(200);
+        afterDays(200);
 
         assertItemsQuality(0, conjuredItem);
+    }
+
+    @Test
+    public void conjuredSulfurasIsInmutable() {
+        Item conjuredSulfuras = new Item("Conjured Sulfuras, Hand of Ragnaros", 5, 18);
+        gildedRose = aGildedRoseWithItems(conjuredSulfuras);
+
+        afterDays(200);
+
+        assertItemsQuality(18, conjuredSulfuras);
+        assertEquals(5, conjuredSulfuras.sellIn);
     }
 }

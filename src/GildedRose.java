@@ -15,7 +15,7 @@ public class GildedRose {
     private DegradableItems degradableItems() {
         List<DegradableItem> degradableItems = new ArrayList<DegradableItem>();
         for (Item item : items) {
-            if (item.name.equals("Sulfuras, Hand of Ragnaros"))
+            if (item.name.contains("Sulfuras, Hand of Ragnaros"))
                 continue;
             degradableItems.add(DegradableItem.createFrom(item));
         }
