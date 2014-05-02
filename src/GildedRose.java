@@ -38,10 +38,10 @@ public class GildedRose {
             if (item.name.equals("Aged Brie")) {
                 incrementQuality(item);
             } else {
-                if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    decrementQuality(item);
-                } else {
+                if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                     item.quality = item.quality - item.quality;
+                } else {
+                    decrementQuality(item);
                 }
             }
         }
