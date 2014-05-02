@@ -3,23 +3,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class GildedRoseTest {
-
-    private GildedRose gildedRose;
-
-    private void afterDays(int numberOfDays) {
-        for (int i = 0; i < numberOfDays; ++i) {
-            gildedRose.updateQuality();
-        }
-    }
-
-    private void assertItemsQuality(int quality, Item item) {
-        assertEquals(quality, item.quality);
-    }
-
-    private GildedRose aGildedRoseWithItems(Item... items) {
-        return new GildedRose(items);
-    }
-
     @Test
     public void sulfurasIsInmutable() {
         Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
@@ -204,8 +187,7 @@ public class GildedRoseTest {
 
     @Test
     public void conjuredBackstagePassesQualityIsZeroAfterTheSellDate() {
-        Item backstagePasses = new Item("Conjured Backstage passes to a TAFKAL80ETC concert", 15,
-                20);
+        Item backstagePasses = new Item("Conjured Backstage passes to a TAFKAL80ETC concert", 15, 2);
         gildedRose = aGildedRoseWithItems(backstagePasses);
 
         afterDays(16);
@@ -213,4 +195,19 @@ public class GildedRoseTest {
         assertItemsQuality(0, backstagePasses);
     }
 
+    private GildedRose gildedRose;
+
+    private void afterDays(int numberOfDays) {
+        for (int i = 0; i < numberOfDays; ++i) {
+            gildedRose.updateQuality();
+        }
+    }
+
+    private void assertItemsQuality(int quality, Item item) {
+        assertEquals(quality, item.quality);
+    }
+
+    private GildedRose aGildedRoseWithItems(Item... items) {
+        return new GildedRose(items);
+    }
 }
