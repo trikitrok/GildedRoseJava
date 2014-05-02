@@ -17,15 +17,9 @@ public class DegradableItem {
     }
 
     protected void updateQuality() {
-        if (item.name.equals("Aged Brie")) {
-            throw new RuntimeException("AgedBrie");
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            throw new RuntimeException("Backstage passes to a TAFKAL80ETC concert");
-        } else {
+        decrementQuality();
+        if (outOfDate()) {
             decrementQuality();
-            if (outOfDate()) {
-                decrementQuality();
-            }
         }
     }
 
