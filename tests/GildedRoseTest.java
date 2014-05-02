@@ -73,32 +73,32 @@ public class GildedRoseTest {
 
     @Test
     public void backstagePassesQualityIncreasesByOneEachDayBeforeTenDaysFromSellDate() {
-        Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20);
+        Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 0);
         gildedRose = aGildedRoseWithItems(backstagePasses);
 
         afterDays(5);
 
-        assertItemsQuality(25, backstagePasses);
+        assertItemsQuality(5, backstagePasses);
     }
 
     @Test
     public void backstagePassesQualityIncreasesByTwoEachDayBetweenTenAndFiveDaysBeforeSellDate() {
-        Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20);
+        Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 0);
         gildedRose = aGildedRoseWithItems(backstagePasses);
 
-        afterDays(10);
+        afterDays(7);
 
-        assertItemsQuality(35, backstagePasses);
+        assertItemsQuality(9, backstagePasses);
     }
 
     @Test
     public void backstagePassesQualityIncreasesByThreeEachDayBetweenFiveDaysFromSellDateAndSellDate() {
-        Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20);
+        Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 0);
         gildedRose = aGildedRoseWithItems(backstagePasses);
 
         afterDays(15);
 
-        assertItemsQuality(50, backstagePasses);
+        assertItemsQuality(30, backstagePasses);
     }
 
     @Test
@@ -112,7 +112,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void regularItemsQualityDecreasesByOneEachDayBeforeSellDate() {
+    public void perishableItemsQualityDecreasesByOneEachDayBeforeSellDate() {
         Item regularItem = new Item("+5 Dexterity Vest", 10, 20);
         gildedRose = aGildedRoseWithItems(regularItem);
 
@@ -191,4 +191,26 @@ public class GildedRoseTest {
 
         assertItemsQuality(4, agedBrie);
     }
+
+    @Test
+    public void conjuredBackstagePassesQualityIncreasesTwiceFaster() {
+        Item backstagePasses = new Item("Conjured Backstage passes to a TAFKAL80ETC concert", 15, 0);
+        gildedRose = aGildedRoseWithItems(backstagePasses);
+
+        afterDays(15);
+
+        assertItemsQuality(50, backstagePasses);
+    }
+
+    @Test
+    public void conjuredBackstagePassesQualityIsZeroAfterTheSellDate() {
+        Item backstagePasses = new Item("Conjured Backstage passes to a TAFKAL80ETC concert", 15,
+                20);
+        gildedRose = aGildedRoseWithItems(backstagePasses);
+
+        afterDays(16);
+
+        assertItemsQuality(0, backstagePasses);
+    }
+
 }

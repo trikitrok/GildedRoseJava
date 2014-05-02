@@ -31,7 +31,7 @@ public abstract class DegradableItem {
     static private DegradableItem createRegular(Item item) {
         if (item.name.contains("Aged Brie")) {
             return new AgedBrie(item);
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        } else if (item.name.contains("Backstage passes to a TAFKAL80ETC concert")) {
             return new ConcertBackstagePasses(item);
         } else {
             return new PerishableItem(item);
