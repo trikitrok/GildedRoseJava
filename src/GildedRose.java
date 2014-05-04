@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class GildedRose {
     Item[] items;
 
@@ -13,12 +10,6 @@ public class GildedRose {
     }
 
     private DegradableItems degradableItems() {
-        List<DegradableItem> degradableItems = new ArrayList<DegradableItem>();
-        for (Item item : items) {
-            if (item.name.contains("Sulfuras, Hand of Ragnaros"))
-                continue;
-            degradableItems.add(DegradableItem.createFrom(item));
-        }
-        return new DegradableItems(degradableItems);
+        return DegradableItems.createFrom(items);
     }
 }
